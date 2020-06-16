@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!--CSS Link-->
+    <link rel="stylesheet" type="text/css" href="indexstyle.css">
+</head>
+
+<body> 
+    <div class"container">
+
+        <!-- Set up the Mars title and button to scrape new data-->
+        <div class="jumbotron" align="center">
+            <h1 align="center" class="display-3">Mission To Mars</h1>
+            <a class="btn btn-primary btn-lg " href="/scrape" role="button">Scrape New Data</a>
+        </div>
+
+        <!-- Latest Info and Title -->
+        <div class="container">
+            <h2 style="font-weight: bold">Latest Mars News</h2>
+            <h4>{{ mars_data.news_title}}</h4>
+            <p>{{mars_data.news_paragraph}}</p>
+        </div>
+
+        <!--Container for Feature, Facts, Weather-->
+        <div class="container">
+            <div class="row">
+                <!--Feature Image Left-->
+                <div class="col-lg-8 col-md-8">
+                    <h3 style="font-weight: bold">Featured Mars Image</h3>
+                    <img src="{{mars_data.featured_image_url}}" style="max-width:100%; max-height: auto;" alt="Mars Featured Image">
+                </div>
+
+                <!-- Weather Card and Mars Facts-->
+                <div class="col-lg-4 col-md-4">
+
+                    <!--Weather Card-->
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h6 style="font-weight: bold">Current Weather on Mars</h6>
+                            <p class="card-text">{{mars_data.latest_weather_tweet}}
+                        </div>
+
+                        <!--Mars Facts Table-->
+                        <br>
+                        <h3 style="font-weight: bold">Mars Facts</h3>
+                        <div syle="max-width: 450px; max-height: 150px; font-size: 15px; margin-bottom: 65;">
+                            {{mars_data.mars_facts|safe}}
+                        </div>
+
+                    </div> <!-- Close Card Class-->
+                </div> <!--Close weather card col-lg-4 -->
+            </div> <!-- close Row Feature, Facts, Weather-->
+        </div> <!-- close Feature, Facts, Weather-->
+
+        <!-- Template for Hemisphere images-->
+        <h3 style="text-align: center;">Mars Hemispheres</h3>
+            <div class="card-deck">    
+            <hr>
+                <div class="col-md-12">
+                <div class="row">
+                    {% for item in mars_data.hemisphere_pic_urls %}
+                    <div class="col-md-6">
+                        <div class="card text-white bg-dark" style="margin: 30px;">
+                            <img class="card-img-top" style = "width: 100%;" src="{{ item.img_url }}" />
+                            <div class="card-body">
+                                <p class="card-text">{{ item.title }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+
+
+
+
+
+
+    
+       
+
+    </div> <!--End Tag Main Container-->
+
+
+
+
+
+   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
